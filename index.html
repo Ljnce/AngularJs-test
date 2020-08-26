@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Angular js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header>
+            <div class="container-header">
+                <h1>WELCOME</h1>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main>
+            <!-- First: Define my ng-app and ng-controller -->
+            <div id="container-all-max" ng-app="myFirstApp" ng-controller="myController">
+                <div class="container-all-min-left">
+                    <div class="left" ng-click="showLeft()" style="cursor:pointer" ng-class="transition" ng-mouseenter="colorLeft()">
+                        <div class="show-me-on-hover-left">
+                           <h1> SHOW ME </h1>
+                        </div>
+                    </div>
+                    <h2> Thinking a number </h2>
+                    <input type="number" ng-model="firstNumber">
+                    <h2> Multiply it by 2 </h2>
+                    <input type="number" ng-model="double">
+                    <h2> Add 10 </h2>
+                    <input type="number" ng-model="more">
+                    <h2> Remove  <strong>{{ naN(firstNumber, double, more)}} from the total </strong> </h2>
+                    <input type="number" ng-model="half">
+                    <h2>Insert the first number you thinked </h2>
+                    <input type="number" ng-model="youThinkThis" style="margin-bottom:5px">
+                    <small> (If you don't remember, your first number is... <strong>{{firstNumber}}</strong>) </small>
+                    <h1> Which is the result? </h1>
+                    <br>
+                    <!-- Final value with ng-if and ng-click (Toggle mod on click) -->
+                    <button type="button" ng-click="finalValue=!finalValue"> Result </button>
+                    <div class="five fade" ng-if="finalValue">
+                        <img src="https://cdn.pixabay.com/photo/2018/05/08/21/28/html5-3384014_1280.png"  alt="five">
+                        <small>&rarr; {{(firstNumber * double + more) / 2 - firstNumber}}</small>
+                    </div>
+                </div>
+                <div class="container-all-min-right">
+                    <div class="right" ng-click="showRight()" style="cursor:pointer" ng-class="transition" ng-mouseenter="colorRight()">
+                        <div class="show-me-on-hover-right">
+                            <h1> SHOW ME </h1>
+                        </div>
+                    </div>
+                    <!-- Api show/hide with function and ng-show-->
+                    <div class="api-title">
+                        <h2>Take a look to API</h2>
+                        <button type="button" ng-click="show()" style="cursor:pointer"> See API </button>
+                    </div>
+                    <div class="api" ng-show="isVisible">
+                        <div class="yourCart" style="color:#FFFFFF">
+                            <!-- If with operatore ternario ?(if) :(else)-->
+                            <h1>Our cart: {{products.length === 0 ? '' : products.length}}</h1>
+                            <!-- Remove single item and "track by id" for count/ ngRepeat:dupes-->
+                            <div class="cartList" ng-repeat="product in products track by $index">
+                                <h1>{{all(product)}}<span ng-click="removeOneItem($index)" style="cursor:pointer; color:red" > &times;</span></h1>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="deleteAll">
+                            <!-- Remove all Item -->
+                            <button type="button" ng-click="deleteAllItem()" style="cursor:not-allowed">Delete all</button>
+                        </div>
+                        <div class="close">
+                            <button type="button" ng-click="hide()" style="cursor:pointer"> Close API </button>
+                        </div>
+                        <div class="cycle slide" ng-repeat="item in items">
+                            <img src="{{item.smallIconImageUrl}}" width="120" alt="image">
+                            <!-- Push my item into cart -->
+                            <button ng-click="addItem(item)" style="cursor:grabbing">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container-footer">
+                <h1>SEE YA</h1>
+            </div>
+        </footer>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Script Angular Js version 1.6.9-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <!-- Scritp Angular animate -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+        <!-- Scritp Angular route -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> -->
+
+        <script src= "js/main.js" charset="utf-8"></script>
+    </body>
+</html>
+
+
+<script>
+
+//Define myApp where i control all my element inside.
+var myApp = angular.module('myFirstApp', ['ngAnimate']); //Include ngAnimate e ngRoute with Script
+
+//Controller + Ajax
+myApp.controller('myController', function($scope, $http) {
+    // Set isVisible 0/false
+    $scope.isVisible = false;
+    // Set function for isVisible true (visible)
+    $scope.show = function(){
+        $scope.isVisible = true;
+    }
+    // Set function for isVisible false (Not visible)
+    $scope.hide = function(){
+        $scope.isVisible = false;
+    }
+    // Ng-click display content left side
+    $scope.showLeft = function() {
+        return $('.left').addClass('noneBlack');
+    }
+    // "Mouseenter" display h1 left side
+    $scope.colorLeft = function() {
+        return $('.left .show-me-on-hover-left').css('display', 'block');
+    }
+    // Ng-click display content right side
+    $scope.showRight = function() {
+        return $('.right').addClass('noneWhite');
+    }
+    // "Mouseenter" display h1 right side
+    $scope.colorRight = function() {
+        return $('.right .show-me-on-hover-right').css('display', 'block');
+    }
+    // If is NaN return '...'
+    $scope.naN = function(firstNumber,double,more) {
+        if (isNaN((firstNumber * double + more) / 2)) {
+            return '...'
+        } else {
+            return ((firstNumber * double + more) / 2);
+        }
+    }
+    // Set val !empty for my Api items
+    $scope.items = '';
+
+    // *** Fake cart: ***
+    // Define an empty array
+    $scope.products = [] ;
+    // Push my item into my cart(products)
+    $scope.addItem = function (item) {
+        $scope.products.push(item);
+        console.log($scope.products);
+    }
+    // Remove one item
+    $scope.removeOneItem = function (item) {
+        $scope.products.splice(item, 1)
+        console.log($scope.products);
+    }
+    // Delete all item
+    $scope.deleteAllItem = function () {
+        return $scope.products = [];
+    }
+    // If name === name -> count
+    $scope.all = function (product) {
+        if (product.name === product.name) {
+            return product.name;
+        }
+    }
+
+    // Like Ajax request for Api
+    $http({
+       method : "GET",
+       url : 'https://www.haloapi.com/metadata/h5/metadata/enemies',
+       headers: { 'Ocp-Apim-Subscription-Key': 'd66314df41554194b9c32cf1fe1ed73f', 'Accept-Language': 'en'},
+    })
+    .then(function mySuccess(response) {
+    $scope.items = response.data;
+    console.log(response.data);
+    },
+    function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+});
+
+//Route
+// myApp.config(function($routeProvider) {
+//   $routeProvider
+//   .when("/", {
+//     templateUrl : "index.html"
+//   })
+// });
+
+
+</script>

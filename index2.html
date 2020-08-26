@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Angular js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header>
+            <h1>header</h1>
+        </header>
+
+        <!-- Main -->
+        <main>
+
+            <div ng-app="" ng-init="firstName='john'">
+                <!-- Input with ng-bind -->
+                <p>Name: <input type="text" ng-model="name"></p>
+                <p ng-bind="name"></p>
+                <!-- Ng-init value take with ng-bind -->
+                <p>The name is <span ng-bind="firstName"></span></p>
+                <!-- Input with ng-model {{ }} -->
+                <input type="text" ng-model="surname">
+                <p>Your surname is: {{ surname }}</p>
+                <!-- Easy expression -->
+                <p>My first expression: {{ 5 * 5 }}</p>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <h2>footer</h2>
+        </footer>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Script Angular Js version 1.5-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+        <script src="js/main.js" charset="utf-8"></script>
+    </body>
+</html>

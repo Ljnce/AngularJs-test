@@ -1,0 +1,179 @@
+/* All */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: lighter;
+}
+
+/* Header */
+.container-header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed;
+}
+
+/* Main */
+#container-all-max {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    height: 100vh;
+    width: 50%;
+    background-color: #000000;
+    color: #FFFFFF;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-me-on-hover-left,
+.show-me-on-hover-right {
+    display: none;
+}
+
+.noneBlack {
+    display: none;
+}
+
+.right {
+    height: 100vh;
+    width: 50%;
+    background-color: #FFFFFF;
+    color: #000000;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noneWhite {
+    display: none;
+}
+
+.container-all-min-left,
+.container-all-min-right {
+    min-height:100vh;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-all-min-left {
+    background-color: #FFFFFF;
+}
+
+.container-all-min-left h2 {
+    margin: 10px 0;
+}
+
+.container-all-min-left h2::first-letter {
+  font-size: 110%;
+}
+
+.container-all-min-left h1 {
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+input {
+    width: 60px;
+    border: 0.5px solid green;
+}
+
+.five{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.five img {
+    height: 140px;
+}
+
+/* Animation angular */
+/* Show */
+.fade.ng-enter {
+  transition:2.5s linear all;
+  opacity:0;
+}
+
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+/* Hide */
+.fade.ng-leave {
+  transition:1.5s linear all;
+  opacity:1;
+}
+.fade.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.container-all-min-right {
+    background-color: #000000;
+}
+
+.api-title {
+    margin: 50px 0;
+}
+
+.api {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.yourCart {
+    height: 150px;
+    width:250px;
+    overflow-y:auto;
+}
+
+.cycle {
+    height: 120px;
+    width: 200px;
+    border: 0.5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #FFFFFF;
+}
+
+.cycle img {
+    margin-bottom: 10px;
+}
+
+.close {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.api-title button,
+.api button {
+    height: 30px;
+    width: 100px;
+}
+
+/* Footer */
+.container-footer {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed;
+}
